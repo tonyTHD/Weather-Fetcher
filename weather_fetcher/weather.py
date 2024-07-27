@@ -19,13 +19,15 @@ def index():
             if response.status_code == 200:
                 data = response.json()
                 weather = data["weather"][0]["description"]
-                temperature = round(data["main"]["temp"] - 273.15, 2)
+                Ftemperature = round((data["main"]["temp"] - 273.15) * 9 / 5 + 32, 2)
+                Ctemperature = round(data["main"]["temp"] - 273.15, 2)
                 history.append(city)
             else:
                 print("An error occurred.")
                 temperature = None
 
-    return render_template("index.html", weather=weather, temperature=temperature, history=history)
+    return render_template("index.html", weather=weather, Ctemperature=Ctemperature,Ftemperature=Ftemperature, history=history)
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
