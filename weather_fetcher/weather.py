@@ -10,7 +10,8 @@ history = []
 @app.route("/", methods=["GET", "POST"])
 def index():
     weather = None
-    temperature = None
+    Ctemperature = None
+    Ftemperature = None
     if request.method == "POST":
         city = request.form.get("city")
         if city:
@@ -24,7 +25,8 @@ def index():
                 history.append(city)
             else:
                 print("An error occurred.")
-                temperature = None
+                Ctemperature = None
+                Ftemperature = None
 
     return render_template("index.html", weather=weather, Ctemperature=Ctemperature,Ftemperature=Ftemperature, history=history)
 
